@@ -10820,7 +10820,7 @@ x-attributes:
                       required: optional
                       usage: '--'
                       description: Describes a form
-                      owner: BAP/BPP
+                      owner: BPP
                       type: object
                   form_response:
                     status:
@@ -11532,7 +11532,7 @@ x-attributes:
                     description: >-
                       This attribute refers to the information about additional
                       input form generated from the system.
-                    owner: BAP/BPP
+                    owner: BPP
                     type: object
                 _description:
                   required: optional
@@ -11886,7 +11886,7 @@ x-attributes:
                     description: >-
                       This attribute refers to the information about additional
                       input form generated from the system.
-                    owner: BAP/BPP
+                    owner: BPP
                     type: object
                 required:
                   required: Mandatory
@@ -12204,7 +12204,7 @@ x-attributes:
                     description: >-
                       This attribute refers to the information about additional
                       input form generated from the system.
-                    owner: BAP/BPP
+                    owner: BPP
                     type: object
                 _description:
                   required: Mandatory
@@ -12631,7 +12631,7 @@ x-attributes:
                     description: >-
                       This attribute refers to the information about additional
                       input form generated from the system.
-                    owner: BAP/BPP
+                    owner: BPP
                     type: object
                 required:
                   required: Mandatory
@@ -12782,6 +12782,12 @@ x-attributes:
                       description: Email address of the contact
                       owner: BPP
                       type: string
+                  _description:
+                    required: Mandatory
+                    usage: '--'
+                    description: Describes customer info for organization
+                    owner: BAP/BPP
+                    type: string
                 contact:
                   phone:
                     required: optional
@@ -12795,6 +12801,15 @@ x-attributes:
                     description: Email address of the contact
                     owner: BPP
                     type: string
+                  _description:
+                    required: Mandatory
+                    usage: '--'
+                    description: >-
+                      It includes essential information such as the customer's
+                      phone number, email address, and any other relevant
+                      contact information.
+                    owner: BAP
+                    type: object
                 person:
                   name:
                     required: optional
@@ -13225,7 +13240,7 @@ x-attributes:
                     description: >-
                       This attribute refers to the information about additional
                       input form generated from the system.
-                    owner: BAP
+                    owner: BPP
                     type: object
                 _description:
                   required: mandatory
@@ -13468,13 +13483,6 @@ x-attributes:
                   description: >-
                     This describes the detailed description of the financial
                     institution that is providing the loan.
-                images:
-                  _description:
-                    required: optional
-                    usage: '--'
-                    description: >-
-                      It encapsulates the detailed description of the used
-                      image.
               price:
                 value:
                   required: Optional
@@ -13590,19 +13598,16 @@ x-attributes:
                       required: Mandatory
                       usage: alpha.manufacturinofficialg@gmail.com
                       description: Email address of the contact
+                  _description:
+                    required: Mandatory
+                    usage: '--'
+                    description: Describes customer info for organization
                 _description:
                   required: mandatory
                   usage: '--'
                   description: >-
                     This refers to the description of the person that will
                     ulitmately receive the order.
-                person:
-                  _description:
-                    required: mandatory
-                    usage: '--'
-                    description: >-
-                      This refers to the description of the associated person as
-                      an individual entity.
                 contact:
                   _description:
                     required: mandatory
@@ -13812,6 +13817,14 @@ x-attributes:
                 description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
                 owner: BAP
                 type: string
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the country of location where the
+                  transaction is meant to be completed.
+                owner: BAP
+                type: object
             city:
               code:
                 required: mandatory
@@ -13819,6 +13832,25 @@ x-attributes:
                 description: Describes the city code this location is, or is located within
                 owner: BAP
                 type: string
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the city of location where the
+                  transaction is meant to be completed.
+                owner: BAP
+                type: object
+            _description:
+              required: Mandatory
+              usage: '--'
+              description: >-
+                It encapsulates the chosen or specified venue or destination for
+                the completion of the transaction. This could involve details
+                such as a physical address, online platform, or any other
+                relevant location information, offering a clearer understanding
+                of where the intended transaction is expected to take place.
+              owner: BAP
+              type: object
           domain:
             required: mandatory
             usage: ONDC:FIS12
@@ -13916,11 +13948,32 @@ x-attributes:
                 required: mandatory
                 usage: IND
                 description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the country of location where the
+                  transaction is meant to be completed.
             city:
               code:
                 required: mandatory
                 usage: '*'
                 description: Describes the city code this location is, or is located within
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the city of location where the
+                  transaction is meant to be completed.
+            _description:
+              required: Mandatory
+              usage: '--'
+              description: >-
+                It encapsulates the chosen or specified venue or destination for
+                the completion of the transaction. This could involve details
+                such as a physical address, online platform, or any other
+                relevant location information, offering a clearer understanding
+                of where the intended transaction is expected to take place.
           domain:
             required: mandatory
             usage: ONDC:FIS12
@@ -14011,6 +14064,24 @@ x-attributes:
                     description: >-
                       The size of the image. The network policy can define the
                       default dimensions of each type
+                  _description:
+                    required: optional
+                    usage: '--'
+                    description: >-
+                      It encapsulates the detailed description of the used
+                      image.
+                _description:
+                  required: Mandatory
+                  usage: '--'
+                  description: >-
+                    This describes the detailed description of the financial
+                    institution that is providing the loan.
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This describes the complete formulated description of the loan
+                  provider whose catalog items have been selected.
             items:
               id:
                 required: Mandatory
@@ -14025,6 +14096,13 @@ x-attributes:
                   required: Mandatory
                   usage: INVOICE_BASED_LOAN
                   description: Loan type whether personal or invoice based
+                _description:
+                  required: Mandatory
+                  usage: '--'
+                  description: >-
+                    This include the details about the distinctive features,
+                    benefits, or unique aspects of the products or service that
+                    has been offered to the end customer.
               price:
                 value:
                   required: Optional
@@ -14035,10 +14113,48 @@ x-attributes:
                   usage: INR
                   description: |
                     Describes currency value in string form
+                _description:
+                  required: Mandatory
+                  usage: '--'
+                  description: >-
+                    It encompasses the exact monetary value assigned to the
+                    order. This may include considerations such as itemized
+                    costs, taxes, shipping fees, or any applicable discounts,
+                    offering a comprehensive understanding of the overall
+                    financial commitment tied to the specified order.
               parent_item_id:
                 required: Mandatory
                 usage: 77b7b9bad166-4a3f-ada6-ca063dc9d321
                 description: Unique item id of the parent item
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This include the details about the distinctive features,
+                  benefits, or unique aspects of the products or service that
+                  has been offered to the end customer.
+              xinput:
+                _description:
+                  required: mandatory
+                  usage: '--'
+                  description: >-
+                    This attribute refers to the information about additional
+                    input required from the customer to confirm this order.
+                form_response:
+                  _description:
+                    required: Mandatory
+                    usage: '--'
+                    description: >-
+                      This description outlines the feedback or system's
+                      reaction to the information provided following the
+                      submission of a form.
+                form:
+                  _description:
+                    required: Mandatory
+                    usage: '--'
+                    description: >-
+                      This attribute refers to the information about additional
+                      input form generated from the system.
             quote:
               id:
                 required: Mandatory
@@ -14053,6 +14169,10 @@ x-attributes:
                   required: Mandatory
                   usage: INR
                   description: Describes currency value in string form
+                _description:
+                  required: Mandatory
+                  usage: '--'
+                  description: This refers to the total quoted price.
               breakup:
                 title:
                   required: Mandatory
@@ -14067,10 +14187,29 @@ x-attributes:
                     required: Optional
                     usage: INR
                     description: Describes price value for that particular breakup
+                  _description:
+                    required: Mandatory
+                    usage: '--'
+                    description: >-
+                      This describes the decimal value of the price of a product
+                      or service.
+                _description:
+                  required: Mandatory
+                  usage: '--'
+                  description: >-
+                    This attribute describes the breakup of the total quoted
+                    price.
               ttl:
                 required: Optional
                 usage: PT15D
                 description: Describes ttl value for quote
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This include the details about the distinctive features,
+                  benefits, or unique aspects of the products or service that
+                  has been offered to the end customer.
             fulfillments:
               customer:
                 organization:
@@ -14101,6 +14240,23 @@ x-attributes:
                       required: Mandatory
                       usage: alpha.manufacturinofficialg@gmail.com
                       description: Email address of the contact
+                  _description:
+                    required: Optional
+                    usage: '--'
+                    description: Describes customer info for organization
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    This refers to the description of the person that will
+                    ulitmately receive the order.
+                person:
+                  _description:
+                    required: optional
+                    usage: '--'
+                    description: >-
+                      This refers to the description of the associated person as
+                      an individual entity.
               state:
                 descriptor:
                   code:
@@ -14111,6 +14267,24 @@ x-attributes:
                     required: Optional
                     usage: SANCTIONED
                     description: Describes the fulfillments current state.
+                  _description:
+                    required: Optional
+                    usage: '--'
+                    description: >-
+                      It encapsulates the real time information on the progress
+                      and completion status of the fulfillment process.
+                _description:
+                  required: Optional
+                  usage: '--'
+                  description: >-
+                    It encapsulates the real time information on the progress
+                    and completion status of the fulfillment process.
+              _description:
+                required: optional
+                usage: '--'
+                description: >-
+                  This refers to the decription as to how that order will
+                  rendered/fulfilled to the end-customers.
             payments:
               id:
                 required: Optional
@@ -14127,6 +14301,14 @@ x-attributes:
                   required: Optional
                   usage: INR
                   description: Describes currency value in string form
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    It encompasses various details such as payment methods
+                    accepted, due dates, currency considerations, and any
+                    specific conditions or requirements related to completing
+                    the transaction.
               time:
                 range:
                   start:
@@ -14137,10 +14319,23 @@ x-attributes:
                     required: Optional
                     usage: '2023-06-30T23:59:59.999Z'
                     description: This indicates end of a range for payment
+                  _description:
+                    required: optional
+                    usage: '--'
+                    description: >-
+                      This refers to the detailed description of time range that
+                      exist in two variants - start range & end range
                 label:
                   required: Optional
                   usage: INSTALLMENT
                   description: Describes the time's label for payment
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    This refers to the detailed description of format of time
+                    used in the system, it can exist in single point in time,
+                    duration, or a structured timetable of operations.
               type:
                 required: Optional
                 usage: ON-ORDER
@@ -14161,12 +14356,26 @@ x-attributes:
                   offline. The details of payment should be present in the
                   params object. If tl_method = http/get, then the payment
                   details will be sent as url params. 
+              _description:
+                required: optional
+                usage: '--'
+                description: >-
+                  This attribute refers to the terms of settlement that a BAP
+                  insinuates to the BPP for a single transaction. These terms
+                  includes the amount, payment destination, time of settlement
+                  and a transaction reference ID.
             cancellation_terms:
               cancellation_fee:
                 percentage:
                   required: Optional
                   usage: 0.03
                   description: Percentage of a value
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    This refers to the description of the applied fee on a
+                    particular entity.
               external_ref:
                 mimetype:
                   required: Optional
@@ -14176,6 +14385,10 @@ x-attributes:
                   required: Optional
                   usage: https://icicibank.com/loan/tnc.html
                   description: The url of the cancellation terms
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: This refers to the url of cancellation terms file.
               fulfillment_state:
                 descriptor:
                   code:
@@ -14186,6 +14399,19 @@ x-attributes:
                     required: Optional
                     usage: Loan disbursed
                     description: Describes name for cancellation terms
+                _description:
+                  required: Optional
+                  usage: '--'
+                  description: >-
+                    It refers to the portraying the present status of order
+                    fulfillments.
+                      It encapsulates the real time information on the progress and completion status of the fulfillment process.
+              _description:
+                required: optional
+                usage: '--'
+                description: >-
+                  This refer to the set of terms for cancellation for an item or
+                  an order.
             documents:
               descriptor:
                 code:
@@ -14206,6 +14432,12 @@ x-attributes:
                     A Loan Agreement Document is a legal contract outlining
                     terms
                   description: Describes the long description of the document
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    It refers to the unique descriptor identifier used for the
+                    document
               mime_type:
                 required: Optional
                 usage: application/pdf
@@ -14214,6 +14446,18 @@ x-attributes:
                 required: Optional
                 usage: https://lender.com/loan/loan-agreement/O1.pdf
                 description: Describes the url of the document
+              _description:
+                required: optional
+                usage: '--'
+                description: >-
+                  It refers to the set of documents that are associated to a
+                  particular order
+            _description:
+              required: Mandatory
+              usage: '--'
+              description: >-
+                This refers to the complete description of the legal contract
+                created between the buyer and the seller.
       support:
         context:
           location:
@@ -14224,6 +14468,14 @@ x-attributes:
                 description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
                 owner: BAP
                 type: string
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the country of location where the
+                  transaction is meant to be completed.
+                owner: BAP
+                type: object
             city:
               code:
                 required: mandatory
@@ -14231,6 +14483,20 @@ x-attributes:
                 description: Describes the city code this location is, or is located within
                 owner: BAP
                 type: string
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the city of location where the
+                  transaction is meant to be completed.
+                owner: BAP
+                type: object
+            _description:
+              required: Mandatory
+              usage: '--'
+              description: The location where the transaction is intended to be fulfilled.
+              owner: BAP
+              type: object
           domain:
             required: mandatory
             usage: ONDC:FIS12
@@ -14327,6 +14593,12 @@ x-attributes:
               description: Email address of the contact
               owner: BAP
               type: string
+            _description:
+              required: mandatory
+              usage: '--'
+              description: Describes the details of customer support
+              owner: BAP
+              type: object
       on_support:
         context:
           location:
@@ -14337,6 +14609,14 @@ x-attributes:
                 description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
                 owner: BAP
                 type: string
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the country of location where the
+                  transaction is meant to be completed.
+                owner: BAP
+                type: object
             city:
               code:
                 required: mandatory
@@ -14344,6 +14624,20 @@ x-attributes:
                 description: Describes the city code this location is, or is located within
                 owner: BAP
                 type: string
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the city of location where the
+                  transaction is meant to be completed.
+                owner: BAP
+                type: object
+            _description:
+              required: Mandatory
+              usage: '--'
+              description: The location where the transaction is intended to be fulfilled.
+              owner: BAP
+              type: object
           domain:
             required: mandatory
             usage: ONDC:FIS12
@@ -14446,6 +14740,12 @@ x-attributes:
               description: Url of support helpdesk
               owner: BPP
               type: string
+            _description:
+              required: mandatory
+              usage: '--'
+              description: Describes the details of customer support
+              owner: BAP
+              type: object
       update:
         context:
           location:
@@ -14456,6 +14756,14 @@ x-attributes:
                 description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
                 owner: BAP
                 type: string
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the country of location where the
+                  transaction is meant to be completed.
+                owner: BAP
+                type: object
             city:
               code:
                 required: mandatory
@@ -14463,6 +14771,25 @@ x-attributes:
                 description: Describes the city code this location is, or is located within
                 owner: BAP
                 type: string
+              _description:
+                required: Mandatory
+                usage: '--'
+                description: >-
+                  This attribute defines the city of location where the
+                  transaction is meant to be completed.
+                owner: BAP
+                type: object
+            _description:
+              required: Mandatory
+              usage: '--'
+              description: >-
+                It encapsulates the chosen or specified venue or destination for
+                the completion of the transaction. This could involve details
+                such as a physical address, online platform, or any other
+                relevant location information, offering a clearer understanding
+                of where the intended transaction is expected to take place.
+              owner: BAP
+              type: object
           domain:
             required: mandatory
             usage: ONDC:FIS12
@@ -14562,6 +14889,14 @@ x-attributes:
                     description: Describes the name of the customer
                     owner: BPP
                     type: string
+                  _description:
+                    required: optional
+                    usage: '--'
+                    description: >-
+                      This refers to the description of the associated person as
+                      an individual entity.
+                    owner: BAP
+                    type: object
                 contact:
                   phone:
                     required: optional
@@ -14575,6 +14910,15 @@ x-attributes:
                     description: Describes the email of the customer
                     owner: BAP
                     type: string
+                  _description:
+                    required: optional
+                    usage: '--'
+                    description: >-
+                      It includes essential information such as the customer's
+                      phone number, email address, and any other relevant
+                      contact information.
+                    owner: BAP
+                    type: object
                 organization:
                   address:
                     required: optional
@@ -14602,6 +14946,12 @@ x-attributes:
                       description: Describes the city code of an entity
                       owner: BPP
                       type: string
+                    _description:
+                      required: optional
+                      usage: '--'
+                      description: Describes the city of an entity
+                      owner: BAP
+                      type: object
                   contact:
                     phone:
                       required: optional
@@ -14615,6 +14965,26 @@ x-attributes:
                       description: Email address of the contact
                       owner: BPP
                       type: string
+                    _description:
+                      required: optional
+                      usage: '--'
+                      description: Describes the contact details of an entity
+                      owner: BAP
+                      type: object
+                  _description:
+                    required: optional
+                    usage: '--'
+                    description: Describes the organization of an entity
+                    owner: BAP
+                    type: object
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    This refers to the description of the person that will
+                    ulitmately receive the order.
+                  owner: BAP
+                  type: object
               state:
                 descriptor:
                   code:
@@ -14629,6 +14999,30 @@ x-attributes:
                     description: Describes the fulfillments current state's name.
                     owner: BPP
                     type: string
+                  _description:
+                    required: Optional
+                    usage: '--'
+                    description: >-
+                      It encapsulates the real time information on the progress
+                      and completion status of the fulfillment process.
+                    owner: BPP
+                    type: object
+                _description:
+                  required: Optional
+                  usage: '--'
+                  description: >-
+                    It encapsulates the real time information on the progress
+                    and completion status of the fulfillment process.
+                  owner: BPP
+                  type: object
+              _description:
+                required: optional
+                usage: '--'
+                description: >-
+                  This refers to the decription as to how that order will
+                  rendered/fulfilled to the end-customers.
+                owner: BAP/BPP
+                type: object
             payments:
               params:
                 amount:
@@ -14643,6 +15037,16 @@ x-attributes:
                   description: Describes the payment currecny
                   owner: BAP
                   type: string
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    It encompasses various details such as payment methods
+                    accepted, due dates, currency considerations, and any
+                    specific conditions or requirements related to completing
+                    the transaction.
+                  owner: BAP/BPP
+                  type: object
               status:
                 required: optional
                 usage: NOT-PAID
@@ -14656,6 +15060,33 @@ x-attributes:
                   description: Describes the payment time label
                   owner: BAP
                   type: string
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    This refers to the detailed description of format of time
+                    used in the system, it can exist in single point in time,
+                    duration, or a structured timetable of operations.
+                  owner: BPP
+                  type: object
+              _description:
+                required: optional
+                usage: '--'
+                description: >-
+                  This attribute refers to the terms of settlement that a BAP
+                  insinuates to the BPP for a single transaction. These terms
+                  includes the amount, payment destination, time of settlement
+                  and a transaction reference ID.
+                owner: BAP/BPP
+                type: object
+            _description:
+              required: Mandatory
+              usage: '--'
+              description: >-
+                This refers to the complete description of the legal contract
+                created between the buyer and the seller.
+              owner: BAP/BPP
+              type: object
       on_update:
         context:
           location:
@@ -14669,6 +15100,15 @@ x-attributes:
                 required: mandatory
                 usage: '*'
                 description: Describes the city code this location is, or is located within
+            _description:
+              required: Mandatory
+              usage: '--'
+              description: >-
+                It encapsulates the chosen or specified venue or destination for
+                the completion of the transaction. This could involve details
+                such as a physical address, online platform, or any other
+                relevant location information, offering a clearer understanding
+                of where the intended transaction is expected to take place.
           domain:
             required: mandatory
             usage: ONDC:FIS12
@@ -14759,6 +15199,24 @@ x-attributes:
                     description: >-
                       The size of the image. The network policy can define the
                       default dimensions of each type
+                  _description:
+                    required: Optional
+                    usage: '--'
+                    description: >-
+                      It encapsulates the detailed description of the used
+                      image.
+                _description:
+                  required: mandatory
+                  usage: '--'
+                  description: >-
+                    This describes the detailed description of the financial
+                    institution that is providing the loan.
+              _description:
+                required: mandatory
+                usage: '--'
+                description: >-
+                  This describes the complete formulated description of the loan
+                  provider whose catalog items have been selected.
             items:
               id:
                 required: Mandatory
@@ -14773,6 +15231,12 @@ x-attributes:
                   required: Mandatory
                   usage: INVOICE_BASED_LOAN
                   description: Loan type whether personal or invoice based
+                _description:
+                  required: mandatory
+                  usage: '--'
+                  description: >-
+                    This describes the detailed description of the financial
+                    institution that is providing the loan.
               price:
                 value:
                   required: Optional
@@ -14783,10 +15247,26 @@ x-attributes:
                   usage: INR
                   description: |
                     Describes currency value in string form
+                _description:
+                  required: mandatory
+                  usage: '--'
+                  description: >-
+                    It encompasses the exact monetary value assigned to the
+                    order. This may include considerations such as itemized
+                    costs, taxes, shipping fees, or any applicable discounts,
+                    offering a comprehensive understanding of the overall
+                    financial commitment tied to the specified order.
               parent_item_id:
                 required: Mandatory
                 usage: 77b7b9bad166-4a3f-ada6-ca063dc9d321
                 description: Unique item id of the parent item
+              _description:
+                required: mandatory
+                usage: '--'
+                description: >-
+                  This include the details about the distinctive features,
+                  benefits, or unique aspects of the products or service that
+                  has been offered to the end customer.
             quote:
               id:
                 required: Mandatory
@@ -14801,6 +15281,10 @@ x-attributes:
                   required: Mandatory
                   usage: INR
                   description: Describes currency value in string form
+                _description:
+                  required: mandatory
+                  usage: '--'
+                  description: This refers to the total quoted price.
               breakup:
                 title:
                   required: Mandatory
@@ -14815,10 +15299,29 @@ x-attributes:
                     required: Optional
                     usage: INR
                     description: Describes price value for that particular breakup
+                  _description:
+                    required: mandatory
+                    usage: '--'
+                    description: >-
+                      This describes the decimal value of the price of a product
+                      or service.
+                _description:
+                  required: mandatory
+                  usage: '--'
+                  description: >-
+                    This attribute describes the breakup of the total quoted
+                    price.
               ttl:
                 required: Optional
                 usage: PT15D
                 description: Describes ttl value for quote
+              _description:
+                required: mandatory
+                usage: '--'
+                description: >-
+                  This include the details about the distinctive features,
+                  benefits, or unique aspects of the products or service that
+                  has been offered to the end customer.
             fulfillments:
               customer:
                 organization:
@@ -14849,6 +15352,24 @@ x-attributes:
                       required: Mandatory
                       usage: alpha.manufacturinofficialg@gmail.com
                       description: Email address of the contact
+                  _description:
+                    required: Mandatory
+                    usage: '--'
+                    description: Describes customer info for organization
+                _description:
+                  required: mandatory
+                  usage: '--'
+                  description: >-
+                    This refers to the description of the person that will
+                    ulitmately receive the order.
+                contact:
+                  _description:
+                    required: mandatory
+                    usage: '--'
+                    description: >-
+                      It includes essential information such as the customer's
+                      phone number, email address, and any other relevant
+                      contact information.
               state:
                 descriptor:
                   code:
@@ -14859,6 +15380,26 @@ x-attributes:
                     required: Optional
                     usage: Loan Initiated
                     description: Describes the fulfillments current state's name.
+                  _description:
+                    required: Optional
+                    usage: '--'
+                    description: >-
+                      It refers to the portraying the present status of order
+                      fulfillments.
+                        It encapsulates the real time information on the progress and completion status of the fulfillment process.
+                _description:
+                  required: Mandatory
+                  usage: '--'
+                  description: >-
+                    It refers to the portraying the present status of order
+                    fulfillments.
+                      It encapsulates the real time information on the progress and completion status of the fulfillment process.
+              _description:
+                required: mandatory
+                usage: '--'
+                description: >-
+                  This refers to the decription as to how that order will
+                  rendered/fulfilled to the end-customers.
             payments:
               id:
                 required: Mandatory
@@ -14875,6 +15416,14 @@ x-attributes:
                   required: Optional
                   usage: INR
                   description: Describes currency value in string form
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    It encompasses various details such as payment methods
+                    accepted, due dates, currency considerations, and any
+                    specific conditions or requirements related to completing
+                    the transaction.
               time:
                 range:
                   start:
@@ -14885,10 +15434,23 @@ x-attributes:
                     required: Optional
                     usage: '2023-06-30T23:59:59.999Z'
                     description: This indicates end of a range for payment
+                  _description:
+                    required: optional
+                    usage: '--'
+                    description: >-
+                      This refers to the detailed description of time range that
+                      exist in two variants - start range & end range
                 label:
                   required: Optional
                   usage: INSTALLMENT
                   description: Describes the time's label for payment
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    This refers to the detailed description of format of time
+                    used in the system, it can exist in single point in time,
+                    duration, or a structured timetable of operations.
               type:
                 required: Mandatory
                 usage: ON-ORDER
@@ -14909,12 +15471,26 @@ x-attributes:
                   offline. The details of payment should be present in the
                   params object. If tl_method = http/get, then the payment
                   details will be sent as url params. 
+              _description:
+                required: mandatory
+                usage: '--'
+                description: >-
+                  This attribute refers to the terms of settlement that a BAP
+                  insinuates to the BPP for a single transaction. These terms
+                  includes the amount, payment destination, time of settlement
+                  and a transaction reference ID.
             cancellation_terms:
               cancellation_fee:
                 percentage:
                   required: Optional
                   usage: 0.03
                   description: Percentage of a value
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: >-
+                    This refers to the description of the applied fee on a
+                    particular entity.
               external_ref:
                 mimetype:
                   required: Optional
@@ -14924,6 +15500,10 @@ x-attributes:
                   required: Optional
                   usage: https://icicibank.com/loan/tnc.html
                   description: The url of the cancellation terms
+                _description:
+                  required: optional
+                  usage: '--'
+                  description: This refers to the url of cancellation terms file.
               fulfillment_state:
                 descriptor:
                   code:
@@ -14934,6 +15514,19 @@ x-attributes:
                     required: Optional
                     usage: Loan disbursed
                     description: Describes name for cancellation terms
+                _description:
+                  required: Optional
+                  usage: '--'
+                  description: >-
+                    It refers to the portraying the present status of order
+                    fulfillments.
+                      It encapsulates the real time information on the progress and completion status of the fulfillment process.
+              _description:
+                required: mandatory
+                usage: '--'
+                description: >-
+                  This refer to the set of terms for cancellation for an item or
+                  an order.
             documents:
               descriptor:
                 code:
@@ -14954,6 +15547,12 @@ x-attributes:
                     A Loan Agreement Document is a legal contract outlining
                     terms
                   description: Describes the long description of the document
+                _description:
+                  required: mandatory
+                  usage: '--'
+                  description: >-
+                    It refers to the unique descriptor identifier used for the
+                    document
               mime_type:
                 required: mandatory
                 usage: application/pdf
@@ -14962,6 +15561,18 @@ x-attributes:
                 required: mandatory
                 usage: https://lender.com/loan/loan-agreement/O1.pdf
                 description: Describes the url of the document
+              _description:
+                required: mandatory
+                usage: '--'
+                description: >-
+                  It refers to the set of documents that are associated to a
+                  particular order
+            _description:
+              required: mandatory
+              usage: '--'
+              description: >-
+                This refers to the complete description of the legal contract
+                created between the buyer and the seller.
 x-errorcodes:
   code:
     - Event: Application submittion failure
