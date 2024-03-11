@@ -44,7 +44,7 @@ message:
               - Withdraw Info
           #after ECAN verify this will be rendered    
           form:
-            id: F7
+            id: F07
             mime_type: application/html
             url: https://6vs8xnx5i7.abcmf.co.in/mf-kyc/xinput/formid/FO7
             resubmit: false
