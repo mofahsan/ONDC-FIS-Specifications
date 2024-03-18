@@ -416,29 +416,12 @@ on_search:
               owner: BPP
               usage: sip
               description: Code value of particular item
-          price:
-            value:
-              required: optional
-              type: string
+            _description:
+              required: mandatory
+              type: object
               owner: BPP
-              usage: 1
-              description: Value of the price entity
-            currency:
-              required: optional
-              type: string
-              owner: BPP
-              usage: INR
-              description: Curreny indicator of the price entity
-          quantity:
-            minimum:
-              count:
-                required: optional
-                type: integer
-                owner: BPP
-                usage: 1
-                description: >-
-                  This represents the minimum quantity allowed for purchase of
-                  the item
+              usage: '--'
+              description: Describes the description of the item
           fulfillment_ids:
             required: optional
             type: string
@@ -458,65 +441,15 @@ on_search:
             usage: true
             description: Whether this item is an exact match of the request
           xinput:
+            _description:
+              required: Optional
+              type: object
+              owner: BAP/BPP
+              usage: '--'
+              description: >-
+                It refers to those information columns that requires additional
+                input from the customer to avail a particular product or item.
             head:
-              descriptor:
-                name:
-                  required: optional
-                  type: Customer Information
-                  owner: BPP
-                  usage: Customer Information
-                  description: >-
-                    This describes the heading of the form where we are taking
-                    additioal information from the customer to purchase / avail
-                    this item.
-                _description:
-                  required: optional
-                  type: object
-                  owner: BPP
-                  usage: '--'
-                  description: Describes the information about the xinput head
-              index:
-                min:
-                  required: Optional
-                  type: number
-                  owner: BPP
-                  usage: false
-                  description: >-
-                    This refers to the minimum integer value of the xinput
-                    header which describes the additional information required
-                    from the customer to purchase/avail the item.
-                max:
-                  required: Optional
-                  type: number
-                  owner: BPP
-                  usage: false
-                  description: >-
-                    This refers to the maximum integer value of the xinput
-                    header which describes the additional information required
-                    from the customer to purchase/avail the item.
-                cur:
-                  required: Optional
-                  type: number
-                  owner: BPP
-                  usage: false
-                  description: >-
-                    This refers to the current integer value of the xinput
-                    header which describes the additional information required
-                    from the customer to purchase/avail the item.
-                _description:
-                  required: Optional
-                  type: object
-                  owner: BPP
-                  usage: '--'
-                  description: >-
-                    It refers to the integer value of the index number of
-                    required additional input.
-              headings:
-                required: Optional
-                type: string
-                owner: BPP
-                usage: Registration URL
-                description: Describes the heading of xinput form
               _description:
                 required: Optional
                 type: object
@@ -526,69 +459,15 @@ on_search:
                   This refers to the header information of the input of
                   additional information required from the customer to avail
                   this item.
-            form:
-              url:
-                required: Optional
-                type: string
-                owner: BPP
-                usage: >-
-                  https://6vs8xnx5i7.icicibank.co.in/loans/xinput/formid/a23f2fdfbbb8ac402bf259d75
-                description: >-
-                  This refers to the current integer value of the xinput header
-                  which describes the additional information required from the
-                  customer to purchase/avail the item.
-              mime_type:
-                required: Optional
-                type: string
-                owner: BPP
-                usage: text/html
-                description: This describes the type of the form generated.
-              resubmit:
-                required: Optional
-                type: boolean
-                owner: BPP
-                usage: false
-                description: >-
-                  After reopening the form, this attribute keeps in check
-                  whether the form has been resubmitted or not
-              multiple_sumbissions:
-                required: Optional
-                type: boolean
-                owner: BPP
-                usage: false
-                description: >-
-                  This attribute defines if the form can be submitted multiple
-                  times or not.
-              id:
-                required: Optional
-                type: string
-                owner: BPP
-                usage: d097c2f5-cb8d-42fe-900e-dfecdede16fb
-                description: This refers to the unique system id of the form
-              _description:
-                required: Optional
-                type: object
-                owner: BPP
-                usage: '--'
-                description: >-
-                  It refers to the detailed description of the used form for
-                  information of the user.
-            required:
-              required: Optional
-              type: boolean
-              owner: BPP
-              usage: true
-              description: >-
-                Indicates whether the form data is mandatorily required by the
-                BPP to confirm the order.
-            _description:
-              required: Optional
-              type: object
-              owner: BAP/BPP
-              usage: '--'
-              description: >-
-                It refers to those information columns that requires additional
-                input from the customer to avail a particular product or item.
+              index:
+                _description:
+                  required: Optional
+                  type: object
+                  owner: BPP
+                  usage: '--'
+                  description: >-
+                    It refers to the integer value of the index number of
+                    required additional input.
           _description:
             required: Mandatory
             type: object
@@ -612,14 +491,6 @@ on_search:
             description: >-
               A code that describes the mode of fulfillment. This is typically
               set when there are multiple ways an order can be fulfilled. 
-          agent:
-            person:
-              name:
-                required: optional
-                type: string
-                owner: BPP
-                usage: John Doe
-                description: Describes the agent name
           _description:
             required: mandatory
             type: object
@@ -637,25 +508,6 @@ on_search:
             This attribute describes a more detailed and comprehensive
             information that showcases the diverse range of products or services
             offered by the business.
-        payments:
-          _description:
-            required: Mandatory
-            type: object
-            owner: BAP/BPP
-            usage: '--'
-            description: >-
-              The terms of settlement for this order. It describes that how the
-              customer wants to pay for the order.
-      payments:
-        collected_by:
-          required: optional
-          type: string
-          owner: BPP
-          usage: BPP
-          description: >-
-            This field indicates the payment collector. If set to 'bap,' BAP
-            collects first and settles with BPP. If BPP agrees, no payment link
-            is sent. If set to 'bpp,' BPP collects payment directly.
       _description:
         required: Mandatory
         type: object
@@ -664,6 +516,15 @@ on_search:
         description: >-
           This attribute describes the products or services that are sent as the
           response to the search done by BAP.
+      payments:
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP/BPP
+          usage: '--'
+          description: >-
+            The terms of settlement for this order. It describes that how the
+            customer wants to pay for the order.
 select:
   context:
     location:
@@ -1117,7 +978,7 @@ on_select:
             usage: 60
             description: Describes a numerical value in decimal form
           _description:
-            required: Mandatory
+            required: optional
             type: object
             owner: BPP
             usage: '--'
@@ -1249,7 +1110,7 @@ on_select:
               This attribute refers to the information about additional input
               required from the customer to confirm this order.
         category_ids:
-          required: mandatory
+          required: optional
           type: string
           owner: BPP
           usage: 4bd4ea25
@@ -1316,7 +1177,7 @@ on_select:
           description: This describes the detailed description of the provider
       fulfillments:
         id:
-          required: optional
+          required: mandatory
           type: string
           owner: BPP
           usage: 3bd4ea25
@@ -1343,6 +1204,12 @@ on_select:
               owner: BPP
               usage: 9999199991
               description: Phone number of the cusotmer
+            _description:
+              required: optional
+              type: object
+              owner: BAP
+              usage: '--'
+              description: This refers to the details of the customer contacts
           person:
             name:
               required: optional
@@ -1356,6 +1223,22 @@ on_select:
               owner: BPP
               usage: PAN:EKLZS12E
               description: Describe the person id
+            _description:
+              required: Mandatory
+              type: object
+              owner: BAP
+              usage: '--'
+              description: >-
+                This refers to the description of the associated person as an
+                individual entity.
+          _description:
+            required: Mandatory
+            type: object
+            owner: BAP
+            usage: '--'
+            description: >-
+              This refers to the description of the person that will ulitmately
+              receive the order.
         agent:
           person:
             id:
@@ -1364,6 +1247,14 @@ on_select:
               owner: BPP
               usage: EUIN:1234
               description: Describe the person id
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP/BPP
+          usage: '--'
+          description: >-
+            This refers to the decription as to how that order will
+            rendered/fulfilled to the end-customers.
       quote:
         price:
           value:
@@ -2239,7 +2130,7 @@ on_init:
               usage: 9999199991
               description: Phone number of the cusotmer
             _description:
-              required: Mandatory
+              required: optional
               type: object
               owner: BAP
               usage: '--'
@@ -3219,7 +3110,7 @@ on_confirm:
               usage: ORDER_REQUESTED
               description: Describes the fulfillment state's code
             _description:
-              required: mandatory
+              required: optional
               type: object
               owner: BPP
               usage: '--'
