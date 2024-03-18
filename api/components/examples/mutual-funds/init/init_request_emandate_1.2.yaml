@@ -28,6 +28,7 @@ message:
           form:
             id: F09
           form_response:
+            status: SUCCESS
             submission_id: b9224d58-8676-455a-833c-1ac0b8500daf
  
     fulfillments:

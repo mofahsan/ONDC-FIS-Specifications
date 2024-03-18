@@ -30,5 +30,6 @@ message:
           - "F2"
         xinput:
           form_response:
+            status: SUCCESS
             submission_id: 09c020de-2020-493a-b0b8-e68076fc54e3
     

@@ -164,7 +164,13 @@ on_status:
     - summary: on_status_request-Emandate-processed-1.2
       description: TBD
       value:
-        $ref: "./on_status/on_status_request-Emandate-processed-1.2.yaml"               
+        $ref: "./on_status/on_status_request-Emandate-processed-1.2.yaml" 
+    - summary: on_status_request-Emandate-processed-1.2
+      description: TBD
+      value:
+        $ref: "./on_status/on_status_request-emandate-on_init-1.2.yaml"    
+
+                
         
 support:
   examples:

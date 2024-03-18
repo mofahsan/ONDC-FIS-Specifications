@@ -30,6 +30,7 @@ message:
           - "F1"
         xinput:
           form_response:
+            status: SUCCESS
             submission_id: 7145acfc-b1be-4b2b-a373-07b34e789c1f  
     fulfillments:
       - customer:

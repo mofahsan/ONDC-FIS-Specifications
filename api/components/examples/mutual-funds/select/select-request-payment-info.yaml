@@ -26,4 +26,5 @@ message:
           - "F1"
         xinput:
           form_response:
+            status: SUCCESS
             submission_id: c4a17603-5190-4c1d-9e8a-3013c3aa7284

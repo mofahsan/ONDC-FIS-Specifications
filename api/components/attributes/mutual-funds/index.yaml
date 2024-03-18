@@ -599,13 +599,13 @@ on_search:
               from
         fulfillments:
           id:
-            required: mandatory
+            required: optional
             type: string
             owner: BPP
             usage: 3bd4ea25
             description: Unique reference ID to the fulfillment of an order
           type:
-            required: mandatory
+            required: optional
             type: string
             owner: BPP
             usage: SIP
@@ -628,24 +628,6 @@ on_search:
             description: >-
               This refers to the decription as to how that order will
               rendered/fulfilled to the end-customers.
-        payments:
-          collected_by:
-            required: optional
-            type: string
-            owner: BPP
-            usage: BPP
-            description: >-
-              This field indicates the payment collector. If set to 'bap,' BAP
-              collects first and settles with BPP. If BPP agrees, no payment
-              link is sent. If set to 'bpp,' BPP collects payment directly.
-          _description:
-            required: Mandatory
-            type: object
-            owner: BAP/BPP
-            usage: '--'
-            description: >-
-              The terms of settlement for this order. It describes that how the
-              customer wants to pay for the order.
         _description:
           required: Mandatory
           type: object
@@ -655,6 +637,25 @@ on_search:
             This attribute describes a more detailed and comprehensive
             information that showcases the diverse range of products or services
             offered by the business.
+        payments:
+          _description:
+            required: Mandatory
+            type: object
+            owner: BAP/BPP
+            usage: '--'
+            description: >-
+              The terms of settlement for this order. It describes that how the
+              customer wants to pay for the order.
+      payments:
+        collected_by:
+          required: optional
+          type: string
+          owner: BPP
+          usage: BPP
+          description: >-
+            This field indicates the payment collector. If set to 'bap,' BAP
+            collects first and settles with BPP. If BPP agrees, no payment link
+            is sent. If set to 'bpp,' BPP collects payment directly.
       _description:
         required: Mandatory
         type: object
@@ -806,7 +807,7 @@ select:
             usage: 1
             description: Describes the quantity assocaited with the item
         fulfillment_ids:
-          required: mandatory
+          required: optional
           type: string
           owner: BPP
           usage: 3bd4ea25
@@ -833,6 +834,12 @@ select:
               description: >-
                 This description outlines the feedback or system's reaction to
                 the information provided following the submission of a form.
+            status:
+              required: optional
+              type: string
+              owner: BAP
+              usage: SUCCESS
+              description: Describes the status of the form
           _description:
             required: optional
             type: object
@@ -881,13 +888,13 @@ select:
             provider whose catalog items have been selected.
       fulfillments:
         type:
-          required: mandatory
+          required: optional
           type: string
           owner: BPP
           usage: EMANDATE
           description: Describe the fulfillment type
         id:
-          required: mandatory
+          required: optional
           type: string
           owner: BPP
           usage: 8bd4ea25
@@ -1608,6 +1615,12 @@ init:
               description: >-
                 This description outlines the feedback or system's reaction to
                 the information provided following the submission of a form.
+            status:
+              required: mandatory
+              type: string
+              owner: BAP
+              usage: SUCCESS
+              description: Describes the status of the form
           _description:
             required: mandatory
             type: object
@@ -1853,6 +1866,14 @@ on_init:
           owner: BAP
           usage: IND
           description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP
+          usage: '--'
+          description: >-
+            This attribute defines the country of location where the transaction
+            is meant to be completed.
       city:
         code:
           required: mandatory
@@ -1860,6 +1881,22 @@ on_init:
           owner: BAP
           usage: '*'
           description: Describes the city code this location is, or is located within
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP
+          usage: '--'
+          description: >-
+            This attribute defines the city of location where the transaction is
+            meant to be completed.
+      _description:
+        required: Mandatory
+        type: object
+        owner: BAP
+        usage: '--'
+        description: >-
+          This attribute defines the location where the transaction is meant to
+          be completed.
     domain:
       required: mandatory
       type: string
@@ -1960,6 +1997,15 @@ on_init:
             owner: BPP
             usage: HDFC Midcap Opportunities Fund
             description: Short description of the provider
+          _description:
+            required: Mandatory
+            type: object
+            owner: BPP
+            usage: '--'
+            description: >-
+              This include the details about the distinctive features, benefits,
+              or unique aspects of the products or service that has been offered
+              to the end customer.
         price:
           currency:
             required: optional
@@ -1973,6 +2019,12 @@ on_init:
             owner: BPP
             usage: 60
             description: Describes a numerical value in decimal form
+          _description:
+            required: Mandatory
+            type: object
+            owner: BPP
+            usage: '--'
+            description: Describes the price for item.
         quantity:
           selected:
             count:
@@ -1991,82 +2043,128 @@ on_init:
           head:
             index:
               min:
-                required: optional
+                required: mandatory
                 type: number
                 owner: BPP
                 usage: false
                 description: Describes the min indexvalue
               max:
-                required: optional
+                required: mandatory
                 type: number
                 owner: BPP
                 usage: 1
                 description: Describes the max index value
               cur:
-                required: optional
+                required: mandatory
                 type: number
                 owner: BPP
                 usage: 1
                 description: Describes the current index value
+              _description:
+                required: Mandatory
+                type: object
+                owner: BPP
+                usage: '--'
+                description: >-
+                  It refers to the integer value of the index number of required
+                  additional input.
             descriptor:
               name:
-                required: optional
+                required: mandatory
                 type: string
                 owner: BPP
                 usage: Set up SIP
                 description: Physical description name of something.
+              _description:
+                required: Mandatory
+                type: object
+                owner: BPP
+                usage: '--'
+                description: Describes the information about the xinput head
             headings:
-              required: optional
+              required: mandatory
               type: string
               owner: BPP
               usage: Emandate Info
               description: Describes the headings of the form.
+            _description:
+              required: Mandatory
+              type: object
+              owner: BPP
+              usage: '--'
+              description: >-
+                This refers to the header information of the input of additional
+                information required from the customer to avail this item.
           form:
             mime_type:
-              required: optional
+              required: mandatory
               type: string
               owner: BPP
               usage: text/html
               description: ' Describes the mime of the document'
             url:
-              required: optional
+              required: mandatory
               type: string
               owner: BPP
               usage: >-
                 https://6vs8xnx5i7.abcmf.co.in/mf-kyc/xinput/formid/a23f2fdfbbb8ac402bfd54f
               description: ' Describes the url of the document'
             resubmit:
-              required: optional
+              required: mandatory
               type: boolean
               owner: BPP
               usage: true
               description: Describes a form can be re-submited again or not.
             multiple_sumbissions:
-              required: optional
+              required: mandatory
               type: boolean
               owner: BPP
               usage: false
               description: Describes a form supports multiple sumbissions or not.
             id:
-              required: optional
+              required: mandatory
               type: string
               owner: BPP
               usage: d097c2f5
               description: This refers to the unique id of the form
+            _description:
+              required: Mandatory
+              type: object
+              owner: BPP
+              usage: '--'
+              description: >-
+                This attribute refers to the information about additional input
+                form generated from the system.
           required:
-            required: optional
+            required: mandatory
             type: boolean
             owner: BPP
             usage: true
             description: >-
               Indicates whether the form data is mandatorily required by the BPP
               to confirm the order.
+          _description:
+            required: Mandatory
+            type: object
+            owner: BAP/BPP
+            usage: '--'
+            description: >-
+              This attribute refers to the information about additional input
+              required from the customer to confirm this order.
         category_ids:
           required: optional
           type: string
           owner: BPP
           usage: 4bd4ea25
           description: Describes the category id
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP/BPP
+          usage: '--'
+          description: >-
+            This decription refers to the comprehensive list of the products or
+            services selected and obtained within the specified order.
       provider:
         id:
           required: mandatory
@@ -2095,12 +2193,30 @@ on_init:
               owner: BPP
               usage: sm
               description: Describes the size type of the image
+            _description:
+              required: Mandatory
+              type: object
+              owner: BPP
+              usage: '--'
+              description: It encapsulates the detailed description of the used image.
           short_desc:
             required: optional
             type: string
             owner: BPP
             usage: HDFC Midcap Opportunities Fund
             description: Short description of the provider
+          _description:
+            required: Mandatory
+            type: object
+            owner: BPP
+            usage: '--'
+            description: This describes the detailed description of the provider
+        _description:
+          required: Mandatory
+          type: object
+          owner: BPP
+          usage: '--'
+          description: This describes the detailed description of the provider
       fulfillments:
         id:
           required: mandatory
@@ -2122,6 +2238,12 @@ on_init:
               owner: BPP
               usage: 9999199991
               description: Phone number of the cusotmer
+            _description:
+              required: Mandatory
+              type: object
+              owner: BAP
+              usage: '--'
+              description: This refers to the details of the customer contacts
           person:
             name:
               required: optional
@@ -2135,6 +2257,22 @@ on_init:
               owner: BPP
               usage: PAN:EKLZS12E
               description: Describe the person id
+            _description:
+              required: Mandatory
+              type: object
+              owner: BAP
+              usage: '--'
+              description: >-
+                This refers to the description of the associated person as an
+                individual entity.
+          _description:
+            required: Mandatory
+            type: object
+            owner: BAP
+            usage: '--'
+            description: >-
+              This refers to the description of the person that will ulitmately
+              receive the order.
         state:
           descriptor:
             name:
@@ -2180,6 +2318,14 @@ on_init:
           description: >-
             A code that describes the mode of fulfillment. This is typically set
             when there are multiple ways an order can be fulfilled. 
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP/BPP
+          usage: '--'
+          description: >-
+            This refers to the decription as to how that order will
+            rendered/fulfilled to the end-customers.
       quote:
         price:
           value:
@@ -2194,6 +2340,12 @@ on_init:
             owner: BPP
             usage: INR
             description: Describes the currency of a product or service
+          _description:
+            required: optional
+            type: object
+            owner: BPP
+            usage: '--'
+            description: This refers to the value of used currency of quoted price.
         breakup:
           item:
             price:
@@ -2224,12 +2376,41 @@ on_init:
               owner: BPP
               usage: o097c2f5
               description: Describes the breakup item id
+            _description:
+              required: optional
+              type: object
+              owner: BPP
+              usage: '--'
+              description: Describes the item for quotes breakup
           title:
             required: optional
             type: string
             owner: BPP
             usage: Price
             description: Describes the breakup title
+          _description:
+            required: optional
+            type: object
+            owner: BPP
+            usage: '--'
+            description: This attribute describes the breakup of the total quoted price.
+          price:
+            _description:
+              required: optional
+              type: object
+              owner: BPP
+              usage: '--'
+              description: >-
+                This describes the decimal value of the price of a product or
+                service.
+        _description:
+          required: optional
+          type: object
+          owner: BPP
+          usage: '--'
+          description: >-
+            This refers to the complete description of the mutully agreed upon
+            quotation for this order.
       billing:
         name:
           required: optional
@@ -2287,6 +2468,14 @@ on_init:
           owner: BAP
           usage: PAID
           description: Describes the payment status
+      _description:
+        required: Mandatory
+        type: object
+        owner: BAP/BPP
+        usage: '--'
+        description: >-
+          This refers to the complete description of the legal contract created
+          between the buyer and the seller.
 confirm:
   context:
     location:
@@ -2297,6 +2486,14 @@ confirm:
           owner: BAP
           usage: IND
           description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP
+          usage: '--'
+          description: >-
+            This attribute defines the country of location where the transaction
+            is meant to be completed.
       city:
         code:
           required: mandatory
@@ -2304,6 +2501,22 @@ confirm:
           owner: BAP
           usage: '*'
           description: Describes the city code this location is, or is located within
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP
+          usage: '--'
+          description: >-
+            This attribute defines the city of location where the transaction is
+            meant to be completed.
+      _description:
+        required: Mandatory
+        type: object
+        owner: BAP
+        usage: '--'
+        description: >-
+          This attribute defines the location where the transaction is meant to
+          be completed.
     domain:
       required: mandatory
       type: string
@@ -2393,6 +2606,18 @@ confirm:
               owner: BPP
               usage: 1
               description: This represents the quantity selected for purchase of the item
+            _description:
+              required: optional
+              type: object
+              owner: BAP
+              usage: 1
+              description: Describes the selected quantity assocaited with the item
+          _description:
+            required: optional
+            type: object
+            owner: BAP
+            usage: 1
+            description: Describes the quantity assocaited with the item
         xinput:
           form_response:
             submission_id:
@@ -2401,6 +2626,43 @@ confirm:
               owner: BPP
               usage: ebff9b95
               description: Describes the submission ID of the form
+            _description:
+              required: mandatory
+              type: object
+              owner: BAP
+              usage: '--'
+              description: >-
+                This description outlines the feedback or system's reaction to
+                the information provided following the submission of a form.
+            status:
+              required: mandatory
+              type: string
+              owner: BAP
+              usage: SUCCESS
+              description: Describes the status of the form
+          _description:
+            required: mandatory
+            type: object
+            owner: BAP/BPP
+            usage: '--'
+            description: >-
+              This attribute refers to the information about additional input
+              required from the customer to confirm this order.
+          form:
+            _description:
+              required: mandatory
+              type: object
+              owner: BPP
+              usage: '--'
+              description: >-
+                This attribute refers to the information about additional input
+                form generated from the system.
+            id:
+              required: mandatory
+              type: string
+              owner: BPP
+              usage: d097c2f5
+              description: This refers to the unique id of the form
         category_ids:
           required: optional
           type: string
@@ -2413,6 +2675,14 @@ confirm:
           owner: BPP
           usage: 3bd4ea25
           description: Unique reference ID to the fulfillment of an order
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP/BPP
+          usage: '--'
+          description: >-
+            This decription refers to the comprehensive list of the products or
+            services selected and obtained within the specified order.
       provider:
         id:
           required: mandatory
@@ -2420,6 +2690,14 @@ confirm:
           owner: BPP
           usage: db1928f9
           description: Id of the provider
+        _description:
+          required: Mandatory
+          type: object
+          owner: BPP
+          usage: '--'
+          description: >-
+            This describes the complete formulated description of the loan
+            provider whose catalog items have been selected.
       fulfillments:
         customer:
           contact:
@@ -2448,6 +2726,22 @@ confirm:
               owner: BPP
               usage: PAN:EKLZS12E
               description: Describe the person id
+            _description:
+              required: Mandatory
+              type: object
+              owner: BAP
+              usage: '--'
+              description: >-
+                This refers to the description of the associated person as an
+                individual entity.
+          _description:
+            required: Mandatory
+            type: object
+            owner: BAP
+            usage: '--'
+            description: >-
+              This refers to the description of the person that will ulitmately
+              receive the order.
         stops:
           type:
             required: optional
@@ -2482,12 +2776,32 @@ confirm:
               owner: BPP
               usage: EUIN:1234
               description: Describe the person id
+            _description:
+              required: mandatory
+              type: object
+              owner: BAP
+              usage: '--'
+              description: Describes a person as any individual
+          _description:
+            required: mandatory
+            type: object
+            owner: BAP
+            usage: '--'
+            description: The agent that is currently handling the fulfillment of the order
         type:
           required: mandatory
           type: string
           owner: BPP
           usage: EMANDATE
           description: Describe the fulfillment type
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP
+          usage: '--'
+          description: >-
+            This refers to the decription as to how that order will
+            rendered/fulfilled to the end-customers.
       billing:
         name:
           required: optional
@@ -2528,6 +2842,12 @@ confirm:
             owner: BPP
             usage: INR
             description: Describes the currency of a product or service
+          _description:
+            required: optional
+            type: object
+            owner: BPP
+            usage: '--'
+            description: This refers to the value of used currency of quoted price.
         breakup:
           title:
             required: optional
@@ -2542,6 +2862,43 @@ confirm:
               owner: BPP
               usage: o097c2f5
               description: Describes the breakup item id
+            _description:
+              required: optional
+              type: object
+              owner: BPP
+              usage: '--'
+              description: Describes the item for quotes breakup
+          _description:
+            required: optional
+            type: object
+            owner: BPP
+            usage: '--'
+            description: This attribute describes the breakup of the total quoted price.
+          price:
+            _description:
+              required: optional
+              type: object
+              owner: BPP
+              usage: '--'
+              description: >-
+                This describes the decimal value of the price of a product or
+                service.
+        _description:
+          required: optional
+          type: object
+          owner: BPP
+          usage: '--'
+          description: >-
+            This refers to the complete description of the mutully agreed upon
+            quotation for this order.
+      _description:
+        required: Mandatory
+        type: object
+        owner: BAP/BPP
+        usage: '--'
+        description: >-
+          This refers to the complete description of the legal contract created
+          between the buyer and the seller.
 on_confirm:
   context:
     location:
@@ -2552,6 +2909,14 @@ on_confirm:
           owner: BAP
           usage: IND
           description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP
+          usage: '--'
+          description: >-
+            This attribute defines the country of location where the transaction
+            is meant to be completed.
       city:
         code:
           required: mandatory
@@ -2559,6 +2924,22 @@ on_confirm:
           owner: BAP
           usage: '*'
           description: Describes the city code this location is, or is located within
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP
+          usage: '--'
+          description: >-
+            This attribute defines the city of location where the transaction is
+            meant to be completed.
+      _description:
+        required: Mandatory
+        type: object
+        owner: BAP
+        usage: '--'
+        description: >-
+          This attribute defines the location where the transaction is meant to
+          be completed.
     domain:
       required: mandatory
       type: string
@@ -2659,6 +3040,15 @@ on_confirm:
             owner: BPP
             usage: SIP
             description: Describes the items code.
+          _description:
+            required: Mandatory
+            type: object
+            owner: BPP
+            usage: '--'
+            description: >-
+              This include the details about the distinctive features, benefits,
+              or unique aspects of the products or service that has been offered
+              to the end customer.
         price:
           currency:
             required: optional
@@ -2672,6 +3062,12 @@ on_confirm:
             owner: BPP
             usage: 60
             description: Describes a numerical value in decimal form
+          _description:
+            required: Mandatory
+            type: object
+            owner: BPP
+            usage: '--'
+            description: Describes the price for item.
         quantity:
           selected:
             count:
@@ -2692,6 +3088,14 @@ on_confirm:
           owner: BPP
           usage: 4bd4ea25
           description: Describes the category id
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP/BPP
+          usage: '--'
+          description: >-
+            This decription refers to the comprehensive list of the products or
+            services selected and obtained within the specified order.
       provider:
         id:
           required: mandatory
@@ -2720,12 +3124,30 @@ on_confirm:
               owner: BPP
               usage: sm
               description: Describes the size type of the image
+            _description:
+              required: Mandatory
+              type: object
+              owner: BPP
+              usage: '--'
+              description: It encapsulates the detailed description of the used image.
           short_desc:
             required: optional
             type: string
             owner: BPP
             usage: HDFC Midcap Opportunities Fund
             description: Short description of the provider
+          _description:
+            required: Mandatory
+            type: object
+            owner: BPP
+            usage: '--'
+            description: This describes the detailed description of the provider
+        _description:
+          required: Mandatory
+          type: object
+          owner: BPP
+          usage: '--'
+          description: This describes the detailed description of the provider
       fulfillments:
         id:
           required: mandatory
@@ -2747,6 +3169,12 @@ on_confirm:
               owner: BPP
               usage: 9999199991
               description: Phone number of the cusotmer
+            _description:
+              required: Mandatory
+              type: object
+              owner: BAP
+              usage: '--'
+              description: This refers to the details of the customer contacts
           person:
             name:
               required: optional
@@ -2760,6 +3188,22 @@ on_confirm:
               owner: BPP
               usage: PAN:EKLZS12E
               description: Describe the person id
+            _description:
+              required: Mandatory
+              type: object
+              owner: BAP
+              usage: '--'
+              description: >-
+                This refers to the description of the associated person as an
+                individual entity.
+          _description:
+            required: Mandatory
+            type: object
+            owner: BAP
+            usage: '--'
+            description: >-
+              This refers to the description of the person that will ulitmately
+              receive the order.
         state:
           descriptor:
             name:
@@ -2774,6 +3218,18 @@ on_confirm:
               owner: BPP
               usage: ORDER_REQUESTED
               description: Describes the fulfillment state's code
+            _description:
+              required: mandatory
+              type: object
+              owner: BPP
+              usage: '--'
+              description: Describes the fulfillments state's descriptor
+          _description:
+            required: mandatory
+            type: object
+            owner: BAP/BPP
+            usage: '--'
+            description: Describes the fulfillments state
         agent:
           person:
             id:
@@ -2811,6 +3267,14 @@ on_confirm:
           description: >-
             A code that describes the mode of fulfillment. This is typically set
             when there are multiple ways an order can be fulfilled. 
+        _description:
+          required: Mandatory
+          type: object
+          owner: BAP/BPP
+          usage: '--'
+          description: >-
+            This refers to the decription as to how that order will
+            rendered/fulfilled to the end-customers.
       quote:
         price:
           value:
@@ -2825,6 +3289,12 @@ on_confirm:
             owner: BPP
             usage: INR
             description: Describes the currency of a product or service
+          _description:
+            required: optional
+            type: object
+            owner: BPP
+            usage: '--'
+            description: This refers to the value of used currency of quoted price.
         breakup:
           item:
             price:
@@ -2855,12 +3325,41 @@ on_confirm:
               owner: BPP
               usage: o097c2f5
               description: Describes the breakup item id
+            _description:
+              required: optional
+              type: object
+              owner: BPP
+              usage: '--'
+              description: Describes the item for quotes breakup
           title:
             required: optional
             type: string
             owner: BPP
             usage: Price
             description: Describes the breakup title
+          _description:
+            required: optional
+            type: object
+            owner: BPP
+            usage: '--'
+            description: This attribute describes the breakup of the total quoted price.
+          price:
+            _description:
+              required: optional
+              type: object
+              owner: BPP
+              usage: '--'
+              description: >-
+                This describes the decimal value of the price of a product or
+                service.
+        _description:
+          required: optional
+          type: object
+          owner: BPP
+          usage: '--'
+          description: >-
+            This refers to the complete description of the mutully agreed upon
+            quotation for this order.
       billing:
         name:
           required: optional
@@ -2941,48 +3440,14 @@ on_confirm:
           usage: >-
             https://www.abcinsurance.com/pg-gateway/payment?amount=500&txn_id=c04a04ee-d892-400f-bbe6-479a43b4448a
           description: Describes the payment url
-      documents:
-        descriptor:
-          code:
-            required: optional
-            type: string
-            owner: BPP
-            usage: LOAN_AGREEMENT
-            description: >-
-              It refers to the unique descriptor identifier used for the
-              document
-          name:
-            required: optional
-            type: string
-            owner: BPP
-            usage: Loan Agreement Document
-            description: It refers to the specific name of the document
-          short_desc:
-            required: optional
-            type: string
-            owner: BPP
-            usage: Download your Loan Agreement document here
-            description: This refers to the concised description of the document
-          long_desc:
-            required: optional
-            type: string
-            owner: BPP
-            usage: A Loan Agreement Document is a legal contract outlining terms
-            description: This refers to the brief description of the document
-        mime_type:
-          required: optional
-          type: string
-          owner: BPP
-          usage: application/pdf
-          description: >-
-            It refers to the categorization of the document based on its file
-            format and content type.
-        url:
-          required: optional
-          type: string
-          owner: BPP
-          usage: https://lender.com/loan/loan-agreement/O1.pdf
-          description: This describes the url from where the document can be accessed
+      _description:
+        required: Mandatory
+        type: object
+        owner: BAP/BPP
+        usage: '--'
+        description: >-
+          This refers to the complete description of the legal contract created
+          between the buyer and the seller.
 status:
   context:
     location:
@@ -3523,45 +3988,3 @@ on_status:
           usage: >-
             https://www.abcinsurance.com/pg-gateway/payment?amount=500&txn_id=c04a04ee-d892-400f-bbe6-479a43b4448a
           description: Describes the payment url
-      documents:
-        descriptor:
-          code:
-            required: optional
-            type: string
-            owner: BPP
-            usage: LOAN_AGREEMENT
-            description: >-
-              It refers to the unique descriptor identifier used for the
-              document
-          name:
-            required: optional
-            type: string
-            owner: BPP
-            usage: Loan Agreement Document
-            description: It refers to the specific name of the document
-          short_desc:
-            required: optional
-            type: string
-            owner: BPP
-            usage: Download your Loan Agreement document here
-            description: This refers to the concised description of the document
-          long_desc:
-            required: optional
-            type: string
-            owner: BPP
-            usage: A Loan Agreement Document is a legal contract outlining terms
-            description: This refers to the brief description of the document
-        mime_type:
-          required: optional
-          type: string
-          owner: BPP
-          usage: application/pdf
-          description: >-
-            It refers to the categorization of the document based on its file
-            format and content type.
-        url:
-          required: optional
-          type: string
-          owner: BPP
-          usage: https://lender.com/loan/loan-agreement/O1.pdf
-          description: This describes the url from where the document can be accessed
