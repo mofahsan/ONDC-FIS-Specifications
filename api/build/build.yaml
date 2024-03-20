@@ -11262,6 +11262,18 @@ x-attributes:
                     owner: BPP
                     usage: Mutual Fund Order Initialized
                     description: Current state of the fulfillment
+                  _description:
+                    required: optional
+                    type: object
+                    owner: BPP
+                    usage: '--'
+                    description: Describes the descriptor of state.
+                _description:
+                  required: optional
+                  type: object
+                  owner: BPP
+                  usage: '--'
+                  description: Describes the fulfillment state.
               agent:
                 person:
                   id:
@@ -11305,6 +11317,24 @@ x-attributes:
                       owner: BPP
                       usage: '2023-04-30T23:59:59.999Z'
                       description: Describes the range end for fulfillment
+                    _description:
+                      required: optional
+                      type: object
+                      owner: BPP
+                      usage: '--'
+                      description: Describes the range start for fulfillment
+                  _description:
+                    required: optional
+                    type: object
+                    owner: BPP
+                    usage: '--'
+                    description: Describes the stops time for fulfillment
+                _description:
+                  required: optional
+                  type: object
+                  owner: BPP
+                  usage: '--'
+                  description: Describes the stop type for fulfillment
               type:
                 required: mandatory
                 type: string
@@ -11423,14 +11453,6 @@ x-attributes:
                 usage: charles@equitygrow.in
                 description: Describes the email of billing entity
             cancellation_terms:
-              fulfillment_state:
-                descriptor:
-                  name:
-                    required: optional
-                    type: string
-                    owner: BPP
-                    usage: Terms
-                    description: Describes the name of the descriptor
               external_ref:
                 mimetype:
                   required: optional
@@ -11444,6 +11466,18 @@ x-attributes:
                   owner: BPP
                   usage: https://abcmutalfunds.com/mf/tnc.html
                   description: Describes the url of external ref
+                _description:
+                  required: optional
+                  type: object
+                  owner: BPP
+                  usage: '--'
+                  description: Describes the external ref value for cancellation terms
+              _description:
+                required: optional
+                type: object
+                owner: BPP
+                usage: '--'
+                description: Describes the cancellation terms
             payments:
               collected_by:
                 required: optional
@@ -11467,6 +11501,14 @@ x-attributes:
                 owner: BAP
                 usage: PAID
                 description: Describes the payment status
+              _description:
+                required: Mandatory
+                type: object
+                owner: BAP/BPP
+                usage: '--'
+                description: >-
+                  The terms of settlement for this order. It describes that how
+                  the customer wants to pay for the order.
             _description:
               required: Mandatory
               type: object
@@ -11823,6 +11865,14 @@ x-attributes:
                 owner: BPP
                 usage: ON-FULFILLMENT
                 description: Describes the type of payment collection
+              _description:
+                required: Mandatory
+                type: object
+                owner: BAP/BPP
+                usage: '--'
+                description: >-
+                  The terms of settlement for this order. It describes that how
+                  the customer wants to pay for the order.
             quote:
               price:
                 value:
@@ -12279,6 +12329,24 @@ x-attributes:
                       owner: BPP
                       usage: '2023-04-30T23:59:59.999Z'
                       description: Describes the range end for fulfillment
+                    _description:
+                      required: optional
+                      type: object
+                      owner: BPP
+                      usage: '--'
+                      description: Describes the range start for fulfillment
+                  _description:
+                    required: optional
+                    type: object
+                    owner: BPP
+                    usage: '--'
+                    description: Describes the stops time for fulfillment
+                _description:
+                  required: optional
+                  type: object
+                  owner: BPP
+                  usage: '--'
+                  description: Describes the stop type for fulfillment
               type:
                 required: mandatory
                 type: string
@@ -12397,14 +12465,6 @@ x-attributes:
                 usage: charles@equitygrow.in
                 description: Describes the email of billing entity
             cancellation_terms:
-              fulfillment_state:
-                descriptor:
-                  name:
-                    required: optional
-                    type: string
-                    owner: BPP
-                    usage: Terms
-                    description: Describes the name of the descriptor
               external_ref:
                 mimetype:
                   required: optional
@@ -12418,6 +12478,18 @@ x-attributes:
                   owner: BPP
                   usage: https://abcmutalfunds.com/mf/tnc.html
                   description: Describes the url of external ref
+                _description:
+                  required: optional
+                  type: object
+                  owner: BPP
+                  usage: '--'
+                  description: Describes the external ref value for cancellation terms
+              _description:
+                required: optional
+                type: object
+                owner: BPP
+                usage: '--'
+                description: Describes the cancellation terms
             payments:
               collected_by:
                 required: optional
@@ -12450,6 +12522,12 @@ x-attributes:
                   owner: BPP
                   usage: bh767iygx65u76iyg
                   description: Describes the transaction id of the payment
+                _description:
+                  required: Mandatory
+                  type: object
+                  owner: BAP/BPP
+                  usage: '--'
+                  description: Describes the extra params for payments.
               status:
                 required: optional
                 type: string
@@ -12463,6 +12541,14 @@ x-attributes:
                 usage: >-
                   https://www.abcinsurance.com/pg-gateway/payment?amount=500&txn_id=c04a04ee-d892-400f-bbe6-479a43b4448a
                 description: Describes the payment url
+              _description:
+                required: Mandatory
+                type: object
+                owner: BAP/BPP
+                usage: '--'
+                description: >-
+                  The terms of settlement for this order. It describes that how
+                  the customer wants to pay for the order.
             _description:
               required: Mandatory
               type: object
@@ -12811,6 +12897,52 @@ x-attributes:
                   This decription refers to the comprehensive list of the
                   products or services selected and obtained within the
                   specified order.
+              xinput:
+                form_response:
+                  submission_id:
+                    required: optional
+                    type: string
+                    owner: BPP
+                    usage: ebff9b95
+                    description: Describes the submission ID of the form
+                  _description:
+                    required: optional
+                    type: object
+                    owner: BAP
+                    usage: '--'
+                    description: >-
+                      This description outlines the feedback or system's
+                      reaction to the information provided following the
+                      submission of a form.
+                  status:
+                    required: optional
+                    type: string
+                    owner: BAP
+                    usage: SUCCESS
+                    description: Describes the status of the form
+                _description:
+                  required: optional
+                  type: object
+                  owner: BAP/BPP
+                  usage: '--'
+                  description: >-
+                    This attribute refers to the information about additional
+                    input required from the customer to confirm this order.
+                form:
+                  _description:
+                    required: optional
+                    type: object
+                    owner: BPP
+                    usage: '--'
+                    description: >-
+                      This attribute refers to the information about additional
+                      input form generated from the system.
+                  id:
+                    required: optional
+                    type: string
+                    owner: BPP
+                    usage: d097c2f5
+                    description: This refers to the unique id of the form
             provider:
               id:
                 required: mandatory
@@ -12990,6 +13122,24 @@ x-attributes:
                       owner: BPP
                       usage: '2023-04-30T23:59:59.999Z'
                       description: Describes the range end for fulfillment
+                    _description:
+                      required: optional
+                      type: object
+                      owner: BPP
+                      usage: '--'
+                      description: Describes the range start for fulfillment
+                  _description:
+                    required: optional
+                    type: object
+                    owner: BPP
+                    usage: '--'
+                    description: Describes the stops time for fulfillment
+                _description:
+                  required: optional
+                  type: object
+                  owner: BPP
+                  usage: '--'
+                  description: Describes the stop type for fulfillment
               type:
                 required: mandatory
                 type: string
@@ -13141,14 +13291,6 @@ x-attributes:
                 usage: charles@equitygrow.in
                 description: Describes the email of billing entity
             cancellation_terms:
-              fulfillment_state:
-                descriptor:
-                  name:
-                    required: optional
-                    type: string
-                    owner: BPP
-                    usage: Terms
-                    description: Describes the name of the descriptor
               external_ref:
                 mimetype:
                   required: optional
@@ -13162,6 +13304,18 @@ x-attributes:
                   owner: BPP
                   usage: https://abcmutalfunds.com/mf/tnc.html
                   description: Describes the url of external ref
+                _description:
+                  required: optional
+                  type: object
+                  owner: BPP
+                  usage: '--'
+                  description: Describes the external ref value for cancellation terms
+              _description:
+                required: optional
+                type: object
+                owner: BPP
+                usage: '--'
+                description: Describes the cancellation terms
             payments:
               collected_by:
                 required: optional
@@ -13194,6 +13348,12 @@ x-attributes:
                   owner: BPP
                   usage: bh767iygx65u76iyg
                   description: Describes the transaction id of the payment
+                _description:
+                  required: optional
+                  type: object
+                  owner: BAP/BPP
+                  usage: '--'
+                  description: Describes the extra params for payments.
               status:
                 required: optional
                 type: string
@@ -13207,6 +13367,14 @@ x-attributes:
                 usage: >-
                   https://www.abcinsurance.com/pg-gateway/payment?amount=500&txn_id=c04a04ee-d892-400f-bbe6-479a43b4448a
                 description: Describes the payment url
+              _description:
+                required: optional
+                type: object
+                owner: BAP/BPP
+                usage: '--'
+                description: >-
+                  The terms of settlement for this order. It describes that how
+                  the customer wants to pay for the order.
             _description:
               required: Mandatory
               type: object
