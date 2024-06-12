@@ -353,6 +353,7 @@ async function validateObject(example, attribute, endPoint) {
 }
 
 function handleError(keys, endPoint) {
+  keys = keys.reduceRight((total,key)=>[key["key"],...total],[])
   throw new Error(
     `Key path ${keys.join(
       "."
@@ -365,17 +366,19 @@ const checkKeysExistence = (example, mandatoryRequiredKeys, endPoint) => {
     handleError(`Invalid example object at ${endPoint}`);
   }
 
-  for (let keys of mandatoryRequiredKeys) {
+  outerLoop: for (let keys of mandatoryRequiredKeys) {
     let currentObj = example;
     let isArray = false;
     let currentIndex = 0;
     let currentKeys = [];
 
-    if(keys.includes("_description")){
-      continue;
-    }
+    // if(keys.includes("_description")){
+    //   continue;
+    // }
 
     for (let key of keys) {
+      var required= key["required"]
+      key = key["key"]
       if (Array.isArray(currentObj)) {
         isArray = true;
         currentKeys = keys.slice(currentIndex);
@@ -383,6 +386,9 @@ const checkKeysExistence = (example, mandatoryRequiredKeys, endPoint) => {
       }
 
       if (!currentObj.hasOwnProperty(key)) {
+        if(required==="optional"){
+          continue outerLoop
+        }
         handleError(keys, endPoint);
       }
 
@@ -416,8 +422,15 @@ function findMandatoryRequiredKeys(obj, result, parentKeys = []) {
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       if (typeof obj[key] === "object") {
-        findMandatoryRequiredKeys(obj[key], result, [...parentKeys, key]);
-      } else if (key === "required" && obj[key]?.toLowerCase() == "mandatory") {
+
+        findMandatoryRequiredKeys(obj[key], result, [...parentKeys, {key:key,required:obj[key]["required"]?.toLowerCase()}]);
+      } 
+      else if (key === "required" && ["mandatory","optional"].includes(obj[key]?.toLowerCase())) {
+        const lastIndex = parentKeys.length-1
+        if(parentKeys[lastIndex]["key"]==="_description"){ // if last key is _description then return parent key
+          parentKeys[lastIndex-1]["required"]= parentKeys[lastIndex]["required"]
+          parentKeys.pop()
+        }
         result.push([...parentKeys]);
       }
     }
